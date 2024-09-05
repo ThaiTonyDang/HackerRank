@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "StairCase": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false
+    },
+    "Profile 1": {
+      "commandName": "Executable",
+      "workingDirectory": "F:\\Project\\Hackrank_Algorithm\\Sum-Min-Max"
+    }
+  }
+}
