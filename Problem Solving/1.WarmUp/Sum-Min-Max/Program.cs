@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Sum_Min_Max
@@ -12,26 +13,23 @@ namespace Sum_Min_Max
     {
         static void Main(string[] args)
         {
-            int[] arr = { 6, 2, 3, 5, 1, 4 };
-            int sumMin = 0, sumMax = 0, Sum = 0;
-            int max = arr[0];
-            int min = arr[0];
-            for (int i = 0; i < arr.Length; i++)
+            List<int> arr = [156873294, 719583602, 581240736, 605827319, 895647130];
+            long sum = arr.Sum();
+            var min = arr[0];
+            var max = arr[0];
+            for (int i = 0; i <= arr.Count() - 1; i++)
             {
-                Sum += arr[i];
-                if (max < arr[i])
-                {
-                    max = arr[i];
-                }
-                if (min > arr[i])
+                if (arr[i] < min)
                 {
                     min = arr[i];
                 }
-
+                if (arr[i] > max)
+                {
+                    max = arr[i];
+                }
             }
-            sumMax = Sum - min;
-            sumMin = Sum - max;
-            Console.WriteLine("{0} {1}", sumMin, sumMax);
+
+            Console.WriteLine($"{sum - max} {sum - min}");
         }
     
     }

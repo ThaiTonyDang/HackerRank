@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Time_Conversion
 {
@@ -59,9 +60,37 @@ namespace Time_Conversion
              return result;
         }
 
+        static string TimeConvert(string s)
+        {
+            StringBuilder sb = new StringBuilder(s);
+            string period = sb.ToString().Substring(8, 2);
+            int hour = int.Parse(sb.ToString().Substring(0, 2));
+
+            sb.Length = 8;
+            if (period.Equals("am", StringComparison.OrdinalIgnoreCase))
+            {
+                if (hour == 12)
+                {
+                    sb[0] = '0';
+                    sb[1] = '0';
+                }
+            }
+            else if (period.Equals("pm", StringComparison.OrdinalIgnoreCase))
+            {
+                if (hour != 12)
+                {
+                    hour += 12;
+                    sb[0] = (hour / 10).ToString()[0];
+                    sb[1] = (hour % 10).ToString()[0];
+                }
+            }
+
+            return sb.ToString();
+        }
+
         static void Main(string[] args)
         {
-             string s = "07:01:00AM";
+             string s = "05:01:00PM";
              string time = TimeStringConversion(s);
              Console.WriteLine(time);
         }
