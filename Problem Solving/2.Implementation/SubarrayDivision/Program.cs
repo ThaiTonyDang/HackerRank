@@ -4,9 +4,10 @@
     {
         static void Main(string[] args)
         {
-            List<int> cl = [2, 2, 1, 3, 1, 1, 2, 2, 1, 4, 0, 2, 3, 5];
-            int day = 5;
-            int month = 3;
+            //<int> cl = [2, 5, 1, 3, 1, 1, 2, 2, 1, 4, 0, 2, 3, 5];
+            List<int> cl = [2, 5, 1, 3, 4, 4, 3, 5, 1, 1, 2, 1, 4, 1, 3, 3, 4, 2, 1];
+            int day = 18;
+            int month = 7;
 
             var result = birthday(cl, day, month);
 
@@ -42,18 +43,18 @@
 
         }
 
-        public static (int, List<List<int>>) birthday(List<int> cl, int d, int m)
+        public static (int, List<List<int>>) birthday(List<int> s, int d, int m)
         {
             int count = 0;
             List<List<int>> validSubarrays = new List<List<int>>();
-            for (int i = 0; i <= cl.Count - m; i++)
+            for (int i = 0; i <= s.Count - m; i++)
             {
                 int sum = 0;
                 List<int> currentSubarray = new List<int>();
                 for (int k = i; k < i + m; k++)
                 {
-                    sum += cl[k];
-                    currentSubarray.Add(cl[k]);
+                    sum += s[k];
+                    currentSubarray.Add(s[k]);
                 }
                 if (sum == d)
                 {

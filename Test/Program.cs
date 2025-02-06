@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Management;
+using System.Text;
 
 namespace Test
 {
@@ -7,39 +8,48 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            static void Main(string[] args)
+            Console.WriteLine(Practise("Hello ! Noah Dang Tran Thai"));
+            Console.WriteLine(GCD(60, 36));
+        }
+
+        public static string Distinct(string s)
+        {
+            var stringBuilder = new StringBuilder();
+            // Add char vaof trong stringBuilder bang Append, kiem tra Index cua ky tu do trong StringBuilder , neu ki tu chua ton tai nghia laf index = -1 thi Tiếp tục Append vào stringbuiler
+            for (int i = 0; i < s.Length; i++)
             {
-                // Đường dẫn đến script diskpart
-                string diskPartScriptPath = "create_partition.txt";
-
-                // Tạo script để phân chia ổ đĩa
-                System.IO.File.WriteAllText(diskPartScriptPath, @"
-select disk 1
-clean
-create partition primary size=10240
-assign letter=H
-format fs=ntfs quick
-");
-
-                // Chạy diskpart với script
-                ExecuteDiskPart(diskPartScriptPath);
+                char currentChar = s[i];
+                if (stringBuilder.ToString().IndexOf(currentChar) == -1)
+                {
+                    stringBuilder.Append(currentChar);
+                }
             }
 
-            static void ExecuteDiskPart(string scriptPath)
+            return stringBuilder.ToString();
+        }
+
+        public static string Practise(string s)
+        {
+            StringBuilder stringBuilder = new();
+            for (int i = 0; i < s.Length; i++)
             {
-                Process process = new Process();
-                process.StartInfo.FileName = "diskpart.exe";
-                process.StartInfo.Arguments = $"/s {scriptPath}";
-                process.StartInfo.RedirectStandardOutput = true;
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.CreateNoWindow = true;
-
-                process.Start();
-                string output = process.StandardOutput.ReadToEnd();
-                process.WaitForExit();
-
-                Console.WriteLine(output);
+                if (stringBuilder.ToString().IndexOf(s[i]) == -1)
+                {
+                    stringBuilder.Append(s[i]);
+                }
             }
+
+            return stringBuilder.ToString();
+        }
+
+        public static int GCD(int a, int b)
+        {
+            if (b == 0)
+            {
+                return b;
+            }
+
+            return GCD(b, a % b);
         }
     }
 }
